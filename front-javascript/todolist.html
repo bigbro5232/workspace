@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 체크된 항목에 중앙선을 긋는 스타일 */
+        .checked {
+            text-decoration: line-through;
+        }
+
+        /* body 스타일 */
+        body {
+            /* 크기 설정 */
+            width: 400px;
+            height: 400px;
+
+            /* 화면 가운데로 정렬 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        input,
+        button {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h2>오늘 할 일</h2>
+    <div id="container">
+        <input type="text">
+        <button>추가</button>
+        <ul>
+
+        </ul>
+        <script>
+            // #container 요소에 클릭 이벤트 리스너 추가
+            document.querySelector('#container').addEventListener('click', function (event) {
+                // 클릭된 요소가 버튼인지 확인
+                if (event.target.tagName === 'BUTTON') {
+                    const input = event.currentTarget.querySelector('input');
+                    const inputValue = input.value.trim();
+
+                    // 입력값이 있는지 확인
+                    if (inputValue) {
+                        const ul = event.currentTarget.querySelector('ul');
+                        const li = document.createElement('li');
+
+                        // 체크박스 생성
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+
+                        // 삭제 버튼 생성
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Delete';
+
+                        // li 요소에 입력값, 체크박스, 삭제 버튼 추가
+                        li.append(inputValue, checkbox, deleteButton);
+                        ul.appendChild(li);
+
+                        // 입력 필드 초기화
+                        input.value = '';
+
+                        // 필드 재입력 
+                        // input.focus();
+                    }
+                }
+            });
+
+            // ul 요소에 클릭 이벤트 리스너 추가
+            document.querySelector('ul').addEventListener('click', function (event) {
+                // 클릭된 요소가 버튼인지 확인
+                if (event.target.tagName === 'BUTTON') {
+                    const li = event.target.closest('li');
+                    // li 요소 삭제
+                    li.remove();
+                }
+            });
+
+            // 체크박스 클릭 이벤트 리스너 추가
+            document.querySelector('ul').addEventListener('change', function (event) {
+                // 클릭된 요소가 체크박스인지 확인
+                // toggle을 이용하면 if문 생성필요 없음
+                if (event.target.type === 'checkbox') {
+                    const li = event.target.closest('li');
+                    // 체크박스가 체크되었는지 확인
+                    if (event.target.checked) {
+                        li.classList.add('checked');
+                    } else {
+                        li.classList.remove('checked');
+                    }
+                }
+            });
+
+        </script>
+
+    </div>
+</body>
+
+</html>

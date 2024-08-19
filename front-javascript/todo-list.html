@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body * {
+            padding: 7px 10px;
+            margin: 5px 8px;
+            font-size: 12px;
+        }
+
+        .complete {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1 id="title">오늘 할 일</h1>
+        <input type="text" name="input">
+        <button type="submit">button</button>
+        <ul id="today_list">
+            <li class="item">AAAAA<input type="checkbox"><button></button></li>
+        </ul>
+        <!-- li에 체크박스에 체크시 텍스트에 line through
+         또한 항목마다 삭제버튼 클릭시 항목 삭제 
+         ul안에 항목들 배열로 생성-->
+    </div>
+    <script>
+        const container = document.querySelector("#container")
+        const login = function (event) {
+            event.preventDefault();
+            const inputVal = document.input.value;
+            document.createElement("li").innerHTML = inputVal;
+            todayList.after(document.createElement("li"));
+        }
+        container.addEventListener("submit", login);
+        // document.container.addEventListener("submit", function (event) {
+        //     event.preventDefault();
+        //     const inputVal = document.container.input.value;
+        //     console.log(inputVal);
+        // });
+
+        const todayList = document.querySelector("#today_list");
+        // 이전 형제 요소 추가
+        // document.createElement("li")
+        // firstP.textContent = "ABCDE";
+        // firstP.innerHTML = "<strong>ABCDE</strong>";
+        // tommorrowlist.before(firstP);
+        // tommorrowlist.after(firstP);
+
+        // 요소의 CSS 적용*****
+        // todayList.firstElementChild.classList.add("complete");
+        // todayList.firstElementChild.classList.remove("item");
+        // todayList.firstElementChild.classList.toggle("complete");
+
+    </script>
+</body>
+
+</html>
