@@ -8,12 +8,10 @@ class Student {
         this.math = math;
     }
 
-    // 총점 계산 메서드
     getTotal() {
         return this.korean + this.english + this.math;
     }
 
-    // 평균 계산 메서드
     getAverage() {
         return this.getTotal() / 3;
     }
