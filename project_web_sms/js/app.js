@@ -1,4 +1,3 @@
-// app.js
 import { Student } from "./Student.js";
 import { StudentRepo } from "./student-repository.js";
 import { EventHandler } from "./event-handler.js";

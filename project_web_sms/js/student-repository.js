@@ -1,34 +1,64 @@
-// student-repository.js
-// 학생 목록을 관리하는 클래스
 import { Student } from "./Student.js";
 
 class StudentRepo {
     constructor() {
-        this.students = []; // 학생 목록을 저장하는 배열
-        this.initStorage(); // localStorage 초기화
-        this.loadStorage(); // localStorage에서 학생 목록 불러오기
+        this.students = []; 
+        this.initStorage();
+        this.loadStorage();
     }
 
-    // 학생을 목록에 추가하고 localStorage에 저장하는 메서드
     addStn(student) {
         this.students.push(student);
         this.saveStorage();
     }
 
-    // 학생을 목록에서 삭제하고 localStorage에서 제거하는 메서드
     removeStn(id) {
         this.students = this.students.filter(student => student.id !== id);
         this.saveStorage();
     }
 
-    // 이름이나 ID로 학생을 검색하는 메서드
-    searchStn(keyword) {
-        return this.students.filter(student =>
-            student.name.includes(keyword) || student.id.toString().includes(keyword)
-        );
+    searchStn(keyword, searchBy) {
+        return this.students.filter(student => {
+            if (searchBy === "ssn") {
+                return student.id.toString().includes(keyword);
+            } else if (searchBy === "name") {
+                return student.name.includes(keyword);
+            } else if (searchBy === "kor") {
+                return student.kor.toString().includes(keyword);
+            } else if (searchBy === "eng") {
+                return student.eng.toString().includes(keyword);
+            } else if (searchBy === "math") {
+                return student.math.toString().includes(keyword);
+            } else if (searchBy === "total") {
+                return student.getTotal().toString().includes(keyword);
+            } else if (searchBy === "avg") {
+                return student.getAvg().toFixed(2).includes(keyword);
+            }
+        });
     }
 
-    // 학생 목록을 localStorage에 저장하는 메서드
+    sortStn(sortBy) {
+        let sortedStudents = [...this.students];
+
+        if (sortBy === "ssn") {
+            sortedStudents.sort((a, b) => a.id - b.id);
+        } else if (sortBy === "name") {
+            sortedStudents.sort((a, b) => a.name.localeCompare(b.name));
+        } else if (sortBy === "kor") {
+            sortedStudents.sort((a, b) => a.kor - b.kor);
+        } else if (sortBy === "eng") {
+            sortedStudents.sort((a, b) => a.eng - b.eng);
+        } else if (sortBy === "math") {
+            sortedStudents.sort((a, b) => a.math - b.math);
+        } else if (sortBy === "total") {
+            sortedStudents.sort((a, b) => a.getTotal() - b.getTotal());
+        } else if (sortBy === "avg") {
+            sortedStudents.sort((a, b) => a.getAvg() - b.getAvg());
+        }
+
+        return sortedStudents;
+    }
+
     saveStorage() {
         const students = this.students.map(student => ({
             id: student.id,
@@ -40,16 +70,14 @@ class StudentRepo {
         localStorage.setItem("students", JSON.stringify(students));
     }
 
-    // localStorage에서 학생 목록을 불러와서 객체로 변환하는 메서드
     loadStorage() {
         const students = JSON.parse(localStorage.getItem("students")) || [];
-        students.map(data => {
+        students.forEach(data => {
             const student = new Student(data.id, data.name, data.kor, data.eng, data.math);
             this.addStn(student);
         });
     }
 
-    // localStorage를 초기화하는 메서드
     initStorage() {
         localStorage.clear();
         this.students = [];
@@ -57,3 +85,4 @@ class StudentRepo {
 }
 
 export { StudentRepo };
+
