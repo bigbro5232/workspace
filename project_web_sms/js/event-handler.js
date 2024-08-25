@@ -66,7 +66,7 @@ class EventHandler {
     // 학생 목록을 정렬하는 메서드
     sortStnEvt() {
         const sortBy = document.querySelector("#sortSelect").value;
-        let sortedStudents = [...studentRepository.students];
+        let sortedStudents = studentRepository.students.map(student => student);
 
         if (sortBy === "ssn") {
             sortedStudents.sort((a, b) => a.id - b.id);

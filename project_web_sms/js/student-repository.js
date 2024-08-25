@@ -23,7 +23,7 @@ class StudentRepo {
 
     // 이름이나 ID로 학생을 검색하는 메서드
     searchStn(keyword) {
-        return this.students.filter(student => 
+        return this.students.filter(student =>
             student.name.includes(keyword) || student.id.toString().includes(keyword)
         );
     }
@@ -43,8 +43,8 @@ class StudentRepo {
     // localStorage에서 학생 목록을 불러와서 객체로 변환하는 메서드
     loadStorage() {
         const students = JSON.parse(localStorage.getItem("students")) || [];
-        students.forEach(data => {
-            const student = Student.fromData(data);
+        students.map(data => {
+            const student = new Student(data.id, data.name, data.kor, data.eng, data.math);
             this.addStn(student);
         });
     }
