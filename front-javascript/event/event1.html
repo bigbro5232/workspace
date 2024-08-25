@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <!-- <button onclick="console.log('button1 click');">button1</button>
+        <button ondblclick="console.log('btn2 dbclick'); -->
+        <button id="btn1">button1</button>
+        <button id="btn2">button2</button>
+    </div>
+    <script>
+        const btn1 = document.querySelector("#btn1");
+        const btn2 = document.querySelector("#btn2");
+        // const btn_click = function(event)= {
+        const btn_click = (event) => {
+            // console.log("btn click");
+            // console.dir(event);
+            // console.log(event.type);
+            // console.log(event.target);
+            // if (event.target === btn1) {
+
+            // 화살표함수 사용시 this의 위치는 일반 함수 때와는 달리
+            // 단독적인 함수로 인식하여 전역(window)으로 가리키게 된다
+            console.log(this);
+
+            if (this === btn1) {
+                console.log("btn1 click");
+            } else {
+                console.log("btn2 click");
+
+            }
+        }
+        // // btn1.onclick = btn_click;
+        // document.querySelector("#btn1").onclick = function () {
+        //     console.log("btn click");
+        // };
+        // btn2.ondblclick = btn_click;
+
+        btn1.addEventListener("click", btn_click);
+        btn2.addEventListener("click", btn_click);
+        document.addEventListener("contextmenu", (event) => {
+            // alert("");
+            event.preventDefault();
+        })
+        // btn2.addEventListener("click", () => {
+        //     btn1.style.backgroundColor = "red"
+        // })
+
+        // 이벤트 헨들
+        // btn1.removeEventListener("click", btn_click);
+    </script>
+</body>
+
+</html>

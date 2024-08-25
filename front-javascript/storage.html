@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>현재 카운트 : <span id="result">0</span></p>
+    <button id="plusBtn" type="button">카운트 증가</button>
+    <button id="minusBtn" type="button">카운트 감소</button>
+    <hr>
+    <button id="addStudent" type="button">학생 등록</button>
+    <button id="listStudent" type="button">학생 목록</button>
+    <script>
+        const closure = (function () {
+            let count = 0;
+            return function (fn) {
+                // return ++count;
+                count = fn(count);
+                return count;
+            }
+        })();
+
+        // storage에 카운트값 저장
+        const saveCount = function () {
+            if (localStorage) {
+                // console.dir(localStorage);
+                if (localStorage.getItem("count")) {
+                    let updateCount = parseInt(localStorage.getItem("count")) + 1;
+                    localStorage.setItem("count", updateCount);
+                } else {
+                    localStorage.setItem("count", 0);
+                }
+            } else {
+                alert("스토리지를 지원하지 않는 브라우저 입니다.")
+            }
+            return localStorage.getItem("count");
+        }
+
+        const saveStudent = function (student) {
+            let students;
+            if (localStorage.getItem("students")) {
+                students = JSON.parse(localStorage.getItem("students"));
+            } else {
+                students = [];
+            }
+            students.push(student);
+            localStorage.setItem("students", JSON.stringify(students));
+        }
+
+        const readStudent = function () {
+            let students;
+            if (localStorage.getItem("students")) {
+                students = JSON.parse(localStorage.getItem("students"));
+            } else {
+                students = [];
+            }
+            return students;
+        }
+        // 학생등록 테스트
+        // const student = {
+        //     sno: 10,
+        //     name: "홍길동"
+        // };
+        // saveStudent(student);
+
+        const displayCount = function (count) {
+            document.querySelector("#result").textContent = count;
+        }
+
+        const plusBtn = document.querySelector("#plusBtn");
+        plusBtn.addEventListener("click", (event) => {
+            // 클로저 활용
+            // let count = closure(count => {
+            //     return ++count;
+            // });
+            // storage 활용
+            const updateCount = saveCount();
+
+            // displayCount(count);
+            displayCount(updateCount);
+        });
+        document.querySelector("#minusBtn").addEventListener("click", (event) => {
+            let count = closure(count => --count);
+            displayCount(count);
+        })
+
+        document.querySelector("#addStudent").addEventListener("click", (event) => {
+            const student = {
+                sno: 11,
+                name: "홍길동"
+            };
+            saveStudent(student);
+        })
+
+        document.querySelector("#listStudent").addEventListener("click", (event) => {
+            const list = readStudent()
+            list.forEach(student => {
+                console.log(`학생번호:${student.sno},학생이름:${student.name}`);
+            });
+        })
+    </script>
+</body>
+
+</html>

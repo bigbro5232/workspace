@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="menu">
+        <button class="menuI">button1</button>
+        <button class="menuI">button2</button>
+        <button class="menuI">button3</button>
+    </div>
+    <script>
+        // const buttons = document.querySelectorAll(".menuI");
+        // for (const button of buttons) {
+        //     button.addEventListener("click", (event) => {
+        //         console.log(event.target.textContent);
+        //     });
+        // }
+        const menu = document.querySelector("#menu");
+        const newBtn = document.createElement("button");
+        newBtn.textContent = "button4";
+        menu.append(newBtn);
+
+
+        document.querySelector("#menu").addEventListener("click", (event) => {
+            console.log(event.target.textContent);
+        })
+    </script>
+</body>
+
+</html>

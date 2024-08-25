@@ -1,0 +1,75 @@
+<!-- 08/06 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="1">
+        <caption>title</caption>
+        <!-- 컬럼 그룹필 -->
+        <col style="width: 80; background-color: yellow;">
+        <colgroup span="2" style="width: 200; background-color: red;"></colgroup>
+        <col style="width: 100; background-color: gray;">
+        <thead>
+            <tr>
+                <th>num</th>
+                <th>name</th>
+                <th>count</th>
+                <th>value</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td>total</td>
+                <td colspan="3">5000</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>A</td>
+                <td>1</td>
+                <td>1000</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>B</td>
+                <td>3</td>
+                <td rowspan="2">2000</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>C</td>
+                <td>3</td>
+                <td>2000</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>total</h2>
+    <table border="1">
+        <tr>
+            <th scope="col">구분</th>
+            <th scope="col">중간</th>
+            <th scope="col">기말</th>
+        </tr>
+        <tr>
+            <th scope="row">전공</th>
+            <th>A</th>
+            <th>B</th>
+        </tr>
+        <tr>
+            <th scope="row">교양</th>
+            <th>C</th>
+            <th>D</th>
+        </tr>
+    </table>
+</body>
+
+</html>

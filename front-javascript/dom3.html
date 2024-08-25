@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <ul id="list">
+            <li>AAAAA</li>
+            <li>BBBBB</li>
+            <li>CCCCC</li>
+            <li>DDDDD</li>
+        </ul>
+    </div>
+
+    <div>
+        <ul id="list2">
+
+        </ul>
+    </div>
+
+
+    <img>
+    <script>
+        const newLi = document.createElement("li");
+        const newTxt = document.createTextNode("EEEEE");
+        newLi.append(newTxt);
+
+        // document.querySelector("#list").append(newLi);
+        // document.querySelector("#list").prepend(newLi);
+
+        const array = [
+            { name: "홍길동", age: 20 },
+            { name: "조하영", age: 21 },
+            { name: "박찬호", age: 23 }
+        ]
+
+        // array.forEach((num) => {
+        //     const li = document.createElement("li");
+        //     const txt = document.createTextNode(num);
+        //     li.append(txt);
+        //     document.querySelector("#list2").append(li);
+        // })
+
+        array.map((std) => {
+            return `<li>${std.name}${std.age}</li>`;
+        })
+            .forEach((li) => {
+                document.querySelector("#list2").innerHTML += li;
+            }); 
+
+        document.querySelector("img").setAttribute("src", "https://picsum.photos/200/200");
+        document.querySelector("img").removeAttribute("src");
+    </script>
+</body>
+
+</html>
