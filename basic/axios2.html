@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios2</title>
+    <!-- cdn으로 axios라이브러리 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!--  -->
+    <style>
+        body {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            margin: 5px 2px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #newsContainer {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        #newsContainer li {
+            list-style-type: none;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+            box-shadow: 0 2px 4px rgb(0, 0, 0, 1);
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+            /* 배경색 속성이 변경될 때 0.3초 동안 부드럽게 변화 */
+        }
+
+        #newsContainer li:hover {
+            background-color: #f0f0f0;
+        }
+
+        #newsContainer li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+        }
+
+        #newsContainer li a:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Axios 라이브러리를 이용한 통신 2</h1>
+    <h2 id="today"></h2>
+    <button id="btn1">News데이터 받아오기-cors문제 발생</button>
+    <button id="btn2">News데이터 받아오기-proxy서버 통해 통신</button>
+    <hr>
+    <div id="newsContainer">
+
+    </div>
+    <script src="axios2.js"></script>
+</body>
+
+</html>

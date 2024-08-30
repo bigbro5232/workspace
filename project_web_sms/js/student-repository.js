@@ -38,25 +38,25 @@ class StudentRepo {
     }
 
     sortStn(sortBy) {
-        let sortedStudents = this.students.map(student => student);
+        let sortedStns = this.students.map(student => student);
 
         if (sortBy === "ssn") {
-            sortedStudents.sort((a, b) => a.id - b.id);
+            sortedStns.sort((a, b) => a.id - b.id);
         } else if (sortBy === "name") {
-            sortedStudents.sort((a, b) => a.name.localeCompare(b.name));
+            sortedStns.sort((a, b) => a.name.localeCompare(b.name));
         } else if (sortBy === "kor") {
-            sortedStudents.sort((a, b) => a.kor - b.kor);
+            sortedStns.sort((a, b) => a.kor - b.kor);
         } else if (sortBy === "eng") {
-            sortedStudents.sort((a, b) => a.eng - b.eng);
+            sortedStns.sort((a, b) => a.eng - b.eng);
         } else if (sortBy === "math") {
-            sortedStudents.sort((a, b) => a.math - b.math);
+            sortedStns.sort((a, b) => a.math - b.math);
         } else if (sortBy === "total") {
-            sortedStudents.sort((a, b) => a.getTotal() - b.getTotal());
+            sortedStns.sort((a, b) => a.getTotal() - b.getTotal());
         } else if (sortBy === "avg") {
-            sortedStudents.sort((a, b) => a.getAvg() - b.getAvg());
+            sortedStns.sort((a, b) => a.getAvg() - b.getAvg());
         }
 
-        return sortedStudents;
+        return sortedStns;
     }
 
     saveStorage() {

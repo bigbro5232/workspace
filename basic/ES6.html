@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>ES6</h1>
+    <script>
+        var n = 10;
+        document.write('n: ', n, '<br>')
+        var n = 20;
+        document.write('n: ', n, '<br>')
+        function func() {
+            var a = 10;
+            document.write('a: ', a, '<br>')
+        }
+        func();
+        let n2 = 100;
+        document.write('n2: ', n2, '<br>')
+        // let n2 = 200;
+        n2 = 200;
+        document.write('n2: ', n2, '<br>')
+        if (true) {
+            var x = 9;
+            let y = 8;
+        }
+        document.write('x: ', x, '<br>')
+        // document.write('y: ', y, '<br>')
+        const PI = 3.14;
+        document.write('PI: ', PI, '<br>')
+        // PI = 4.14;
+        const obj = { num: 3 }
+        document.write('obj.num: ', obj.num, '<br>')
+        // obj = {name: x}
+        obj.num = 500;
+        document.write('obj.num: ', obj.num, '<br>')
+        document.write(`obj.num: ${obj.num}<br>`)
+
+        function func2(x, y) {
+            return x + y;
+        }
+        const func3 = function (x, y) {
+            return x - y
+        }
+        const func4 = (x, y) => { return x * y }
+        document.write(`func2: ${func2(1, 2)}<br>`)
+        document.write(`func3: ${func3(1, 2)}<br>`)
+        document.write(`func4: ${func4(1, 2)}<br>`)
+
+        const std = {
+            name: 'x',
+            age: 10
+        }
+        document.write(`name: ${std.name}, age: ${std.age}<br>`)
+
+        const arr = [1, 2, 3]
+        document.write(`arr: ${arr}<br>`)
+        const [first, ...rest] = arr;
+        document.write(`first: ${first} rest: ${rest}<br>`)
+
+        let user = {
+            name: 'xyz',
+            age: 20,
+            some: 'abc'
+        }
+        const { name: name2, age: asd, city } = user;
+        document.write(`name: ${name2} asd: ${asd} some: ${user.some}<br>`)
+
+        function plus([x, y]) {
+            return x + y;
+        }
+        let numbers = [10, 99]
+        const result = plus(numbers)
+        document.write(`result: ${result}<br>`)
+
+        let arr1 = [1, 2, 3, 4, 5];
+        let arr2 = [...arr1, 6, 7, 8];
+        document.write(arr2, '<br>')
+
+        let newArr = [0, ...arr2, 9, 10];
+        document.write(newArr, '<br>')
+
+        const user1 = {
+            name: 'asdf',
+            age: 12,
+        }
+        const user2 = {
+            ...user1,
+            some: 'asdfg'
+        }
+        document.write(JSON.stringify(user2), '<br>');
+
+        let str = 'hello';
+        let str2 = [...str];
+        document.write(str, '', str2.length,'<br')
+        
+    </script>
+
+
+</body>
+
+</html>
