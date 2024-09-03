@@ -1,0 +1,4 @@
+https://api.openweathermap.org/data/2.8/onecall?lat=37.5390833&lon=126.9023575&exclude=hourly,daily,minutely&appid=914e1465c548461b56f6e859bdc75f93
+https://nominatim.openstreetmap.org/reverse?lat=<value>&lon=<value>
+
+https://nominatim.openstreetmap.org/reverse?lat=37.5390833&lon=126.9023575&format=json

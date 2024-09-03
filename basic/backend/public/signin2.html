@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signin2.html</title>
+</head>
+
+<body style="text-align: center;">
+    <h1>Login Page - Ajax이용해 로그인</h1>
+    <form id="frm" action="signinProc" method="post">
+        아이디 : <input type="text" name="userId" id="userId"><br><br>
+        비밀번호 : <input type="password" name="userPw" id="userPw"><br><br>
+        <button type="submit">로그인</button>
+        <button type="reset">다시쓰기</button>
+    </form>
+    <div id="result">
+
+    </div>
+    <script>
+        const frm = document.querySelector('#frm');
+        frm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const uid = document.querySelector('#userId').value;
+            const upw = document.querySelector('#userPw').value;
+            const data = {
+                userId: uid,
+                userPw: upw
+            };
+            const url = '/signinProc2';
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+                .then((res) => {
+                    return res.json();
+                })
+                .then((resData) => {
+                    const result = document.querySelector('#result');
+                    if (resData.status === 200) {
+                        result.innerHTML = `
+                            <h3>로그인 성공</h3>
+                            <h3>${resData.message}</h3>          
+                        `;
+                        result.style.color = 'blue';
+                    } else {
+                        result.innerHTML = `
+                            <h3>로그인 실패</h3>
+                            <h3>${resData.message}</h3>          
+                        `;
+                        result.style.color = 'tomato';
+                    }
+                })
+                .catch((err) => {
+                    alert(err);
+                });
+        }) 
+    </script>
+</body>
+
+</html>
