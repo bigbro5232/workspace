@@ -1,13 +1,15 @@
 // app.js
 const express = require('express');
-require('dotenv').config();
 const morgan = require('morgan');
-const path = require('path');
-const { dlopen } = require('process');
 const cors = require('cors');
+const path = require('path');
 const bookRouter = require('./routes/bookRouter');
 const userRouter = require('./routes/userRouter');
 const naverRouter = require('./routes/naverRouter');
+const indexRouter = require('./routes/indexRouter');
+const bookDBRouter = require('./routes/bookDBRouter');
+require('dotenv').config();
+// const { dlopen } = require('process');
 
 const port = process.eventNames.PORT || 3333;
 
@@ -25,7 +27,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev'));
 app.use(cors(corsOption));
-app.use('/books', bookRouter);
+
+app.use('/', indexRouter);
+app.use('/books', bookRouter); //배열 사용
+app.use('/api/books', bookDBRouter); //DB연동
 app.use('/users', userRouter);
 app.use('/naver', naverRouter);
 
