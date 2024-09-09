@@ -8,6 +8,7 @@ const userRouter = require('./routes/userRouter');
 const naverRouter = require('./routes/naverRouter');
 const indexRouter = require('./routes/indexRouter');
 const bookDBRouter = require('./routes/bookDBRouter');
+const testRouter = require('./routes/testRouter');
 require('dotenv').config();
 // const { dlopen } = require('process');
 
@@ -33,6 +34,7 @@ app.use('/books', bookRouter); //배열 사용
 app.use('/api/books', bookDBRouter); //DB연동
 app.use('/users', userRouter);
 app.use('/naver', naverRouter);
+app.use('/test', testRouter);
 
 app.listen(port, () => {
     console.log(`http://localhost:${port}`);

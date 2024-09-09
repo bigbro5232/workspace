@@ -1,6 +1,12 @@
 const baseUrl = `http://localhost:3333`;
 const url = baseUrl + '/api/books'
 
+const showError = (error) => {
+    let msg = document.querySelector('#resultMessage');
+    msg.innerHTML = `<h3>${error}</h3>`;
+    msg.style.display = 'block';
+}
+
 const findBook = async (keyword) => {
     // alert(keyword);
     try {
@@ -9,7 +15,7 @@ const findBook = async (keyword) => {
         const data = await response.json();
         renderBooks(data);
     } catch (err) {
-        alert(err);
+        showError(err);
     }
 }
 const addBook = async (newBook) => {
@@ -27,9 +33,26 @@ const addBook = async (newBook) => {
         clearField();
     } catch (err) {
         console.error(err);
-        alert(err);
+        showError(err);
     }
 }
+
+const addBookFileUp = async (formData) => {
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: formData
+        });
+        // FormData객체를 사용하면 브라우저가 자동으로 Content-Type설정을 하면서
+        // 적절한 boundary를 추가한다 --> multipary/form-data형식으로 헤더를 설정해서 전송
+        const data = await response.json();
+        getAllBook();
+        clearField();
+    } catch (err) {
+        showError(err);
+    }
+}
+
 const getAllBook = async () => {
     try {
         const response = await fetch(url);
@@ -37,7 +60,7 @@ const getAllBook = async () => {
         const data = await response.json();
         renderBooks(data)
     } catch (err) {
-        alert(err);
+        showError(err);
     }
 }
 const getBook = async (isbn) => {
@@ -48,7 +71,7 @@ const getBook = async (isbn) => {
         console.log(data);
         setFormData(data);
     } catch (err) {
-        alert(err);
+        showError(err);
     }
 }
 
@@ -71,6 +94,7 @@ const renderBooks = (data) => {
         result.innerHTML += str;
     });
 }
+
 const setFormData = (book) => {
     if (!book) {
         alert('해당 도서는 없습니다');
@@ -83,7 +107,7 @@ const setFormData = (book) => {
 
     let str = ``;
     if (book.image) {
-        str += `<img src="images/${book.image}" alt="${book.title}" class="img-thumbnail">`;
+        str += `<img src="http://localhost:3333/images/${book.image}" alt="${book.title}" class="img-thumbnail">`;
     } else {
         str += `<img src="images/noimage.jpg" class="img-thumbnail">`;
     }
@@ -92,6 +116,7 @@ const setFormData = (book) => {
     const btnUpdate = document.querySelector('#btnUpdate');
     btnUpdate.removeAttribute("disabled");
 }
+
 const deleteBook = async (isbn) => {
     // alert(isbn);
     const yn = confirm(`${isbn}번 도서를 정말 삭제할까요>`);
@@ -105,9 +130,8 @@ const deleteBook = async (isbn) => {
             console.log(data);
             getAllBook();
         } catch (err) {
-            alert(err);
+            showError(err);
         }
-
     } else {
         return;
     }
@@ -124,11 +148,17 @@ const updateBook = async (newBook) => {
         });
         const data = await response.json();
         console.log(data);
-        getAllBook();
-        clearField();
-        document.querySelector('#btnUpdate').setAttribute('disabled', 'disabled')
+        if (data.message === 'success') {
+            getAllBook();
+            clearField();
+            document.querySelector('#btnUpdate').setAttribute('disabled', 'disabled')
+            document.querySelector('#resultMessage').style.display = 'none';
+        } else {
+            document.querySelector('#resultMessage').innerHTML = `<h3>${data.message}</h3>`;
+            document.querySelector('#resultMessage').style.display = 'block';
+        }
     } catch (err) {
-        alert(err);
+        showError(err);
     }
 }
 
@@ -142,4 +172,4 @@ const clearField = () => {
     document.querySelector('#title').focus();
 }
 
-export { getAllBook, addBook, getBook, findBook, deleteBook, updateBook };
+export { getAllBook, addBook, addBookFileUp, getBook, findBook, deleteBook, updateBook };
