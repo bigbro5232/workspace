@@ -1,8 +1,8 @@
 // server.js
 const express = require('express');
 const cors = require('cors');
-const apiRouter = require('./routes/apiRouter');
-const fetchData = require('./models/initDB');
+const apiRouter = require('./apiRouter');
+const fetchData = require('./initDB');
 
 const app = express();
 
