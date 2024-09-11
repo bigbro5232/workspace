@@ -6,13 +6,13 @@ async function fetchData() {
     try {
         const response = await axios.get('https://smart.incheon.go.kr/server/rest/services/Hosted/전통시장/FeatureServer/47/query?where=1%3D1&outFields=name,period,hmpg_addr,tel,roadaddr&outSR=4326&f=json');
         const data = response.data;
-        await saveMarketData(data);
+        await saveData(data);
     } catch (error) {
         console.error('Error: ', error);
     }
 }
 
-async function saveMarketData(data) {
+async function saveData(data) {
     const connection = await pool.getConnection();
     try {
         await connection.beginTransaction();

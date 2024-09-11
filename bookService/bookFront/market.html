@@ -1,6 +1,7 @@
 <!-- market.html -->
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <title>시장 데이터</title>
@@ -9,26 +10,32 @@
             width: 100%;
             border-collapse: collapse;
         }
-        th, td {
-            border: 1px solid #ddd;
+
+        th,
+        td {
+            border: 1px solid white;
             padding: 8px;
         }
+
         th {
-            background-color: #f2f2f2;
             text-align: left;
         }
+
         #pagination {
             margin-top: 20px;
         }
+
         #pagination button {
             margin: 0 5px;
             padding: 5px 10px;
         }
+
         #detail {
             margin-top: 20px;
         }
     </style>
 </head>
+
 <body>
     <h1>시장 데이터</h1>
     <div id="result"></div>
@@ -36,4 +43,5 @@
     <div id="detail"></div>
     <script src="/workspace/bookService/bookBack/controllers/marketController.js"></script>
 </body>
+
 </html>

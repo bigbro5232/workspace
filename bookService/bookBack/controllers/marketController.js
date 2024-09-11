@@ -1,21 +1,21 @@
 // marketController.js
-let currentPage = 1;
-const itemsPerPage = 5;
+let Page = 1;
+const items = 5;
 
 showData = async (req, res) => {
     try {
         const response = await fetch('http://localhost:3000/markets');
         const data = await response.json();
         displayData(data, currentPage);
-        setupPagination(data);
+        setupPage(data);
     } catch (error) {
         console.error('Error: ', error);
     }
 }
 
 function displayData(data, page) {
-    const marketDataDiv = document.querySelector('#result');
-    marketDataDiv.innerHTML = ''; // 기존 내용을 초기화
+    const marketDiv = document.querySelector('#result');
+    marketDiv.innerHTML = ''; // 기존 내용을 초기화
 
     // 테이블 생성
     const table = document.createElement('table');
@@ -32,9 +32,9 @@ function displayData(data, page) {
 
     const start = (page - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-    const paginatedData = data.slice(start, end);
+    const pageData = data.slice(start, end);
 
-    paginatedData.forEach(market => {
+    pageData.forEach(market => {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${market.id}</td>
@@ -47,10 +47,10 @@ function displayData(data, page) {
         table.appendChild(row);
     });
 
-    marketDataDiv.appendChild(table);
+    marketDiv.appendChild(table);
 }
 
-function setupPagination(data) {
+function setupPage(data) {
     const paginationDiv = document.querySelector('#pagination');
     paginationDiv.innerHTML = ''; // 기존 내용을 초기화
 
