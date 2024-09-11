@@ -2,7 +2,7 @@
 let Page = 1;
 const items = 5;
 
-showData = async (req, res) => {
+async function showData(req, res) {
     try {
         const response = await fetch('http://localhost:3000/markets');
         const data = await response.json();
