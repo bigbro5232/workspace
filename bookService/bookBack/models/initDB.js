@@ -1,6 +1,6 @@
 // initDB.js
 const axios = require('axios');
-const pool = require('./db');
+const pool = require('./dbPool');
 
 async function fetchData() {
     try {
@@ -25,8 +25,8 @@ async function saveMarketData(data) {
         ]);
 
         for (const market of markets) {
-            const [rows] = await connection.query('SELECT * FROM markets WHERE name = ?', [market[0]]);
-            if (rows.length === 0) {
+            const [data] = await connection.query('SELECT * FROM markets WHERE name = ?', [market[0]]);
+            if (data.length === 0) {
                 const query = 'INSERT INTO markets (name, period, hmpg_addr, roadaddr, tel) VALUES (?, ?, ?, ?, ?)';
                 await connection.query(query, market);
             }

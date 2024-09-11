@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const apiRouter = require('./routes/apiRouter');
-const fetchData = require('./initDB');
+const fetchData = require('./models/initDB');
 
 const app = express();
 
