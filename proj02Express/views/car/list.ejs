@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>중고차 목록</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>NAME</td>
+                <td>PRICE</td>
+                <td>COMPANY</td>
+                <td>YEAR</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% carList.forEach((car,index)=>{%>
+                <tr>
+                    <td>
+                        <%= index %>
+                    </td>
+                    <td>
+                        <%= car.name %>
+                    </td>
+                    <td>
+                        <%= car.price %>
+                    </td>
+                    <td>
+                        <%= car.company %>
+                    </td>
+                    <td>
+                        <%= car.year %>
+                    </td>
+                </tr>
+                <%});%>
+        </tbody>
+    </table>
+</body>
+
+</html>

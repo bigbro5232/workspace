@@ -6,8 +6,28 @@ async function showData(req, res) {
     try {
         const response = await fetch('http://localhost:3000/markets');
         const data = await response.json();
-        displayData(data, currentPage);
+        displayData(data, Page);
         setupPage(data);
+    } catch (error) {
+        console.error('Error: ', error);
+    }
+}
+
+async function showDetail(id) {
+    try {
+        const response = await fetch(`http://localhost:3000/markets/${id}`);
+        const data = await response.json();
+        displayDetail(data);
+    } catch (error) {
+        console.error('Error: ', error);
+    }
+}
+
+async function findData(keyword) {
+    try {
+        const response = await fetch(`http://localhost:3000/markets/search?keyword=${keyword}`);
+        const data = await response.json();
+        displayData
     } catch (error) {
         console.error('Error: ', error);
     }
@@ -20,9 +40,9 @@ function displayData(data, page) {
     // 테이블 생성
     const table = document.createElement('table');
     table.innerHTML = `
-        <tr>
-            <th>번호</th>
-            <th>이름</th>
+    <tr>
+    <th>번호</th>
+    <th>이름</th>
             <th>주소</th>
             <th>전화번호</th>
             <th>기간</th>
@@ -66,15 +86,6 @@ function setupPage(data) {
     }
 }
 
-async function showDetail(id) {
-    try {
-        const response = await fetch(`http://localhost:3000/markets/${id}`);
-        const market = await response.json();
-        displayDetail(market);
-    } catch (error) {
-        console.error('Error: ', error);
-    }
-}
 
 function displayDetail(market) {
     const detailDiv = document.querySelector('#detail');

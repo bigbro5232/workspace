@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            background-color: antiquewhite;
+            text-align: center;
+            line-height: 100px;
+            position: relative;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hello World</h1>
+    <button id="moveBtn">move</button>
+    <div id="box">Box</div>
+
+    <script>
+        let moveBtn = document.querySelector('#moveBtn');
+        let box = document.querySelector('#box');
+        let x = 0;
+        let y = 30;
+        function eventBox() {
+            const invBox = setInterval(() => {
+                x += y;
+                box.style = `left:${x}px`;
+                if (x >= 200 || x < 30) {
+                    y = y * -1;
+                }
+            }, 500);
+        };
+
+        moveBtn.addEventListener('click', eventBox);
+    </script>
+</body>
+
+</html>

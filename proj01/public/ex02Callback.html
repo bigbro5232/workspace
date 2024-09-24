@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            background-color: antiquewhite;
+            text-align: center;
+            line-height: 100px;
+            position: relative;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hello World</h1>
+    <button id="moveBtn">move</button>
+    <div id="box">Box</div>
+
+    <script>
+        let moveBtn = document.querySelector('#moveBtn')
+        let box = document.querySelector('#box');
+        moveBtn.addEventListener('click', event => {
+            box.innerText = 'Move';
+            box.style = `left:300px; top:100px; background-color:yellow; transition:0.5s;`;
+        });
+    </script>
+</body>
+
+</html>
